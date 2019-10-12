@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__.'/../vendor/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 (new Laravel\Lumen\Bootstrap\LoadEnvironmentVariables(
     dirname(__DIR__)
@@ -82,28 +82,28 @@ $app->singleton(
 $app->register(Telegram\Bot\Laravel\TelegramServiceProvider::class);
 
 config(['telegram' => [
-    'bot_token' => env('WEATHER_BOT_TOKEN'),
+    'default' => 'common',
+    'bots' => [
+        'common' => [
+            'username' => 'TellMeWeatherBot',
+            'token' => env('WEATHER_BOT_TOKEN'),
+            'commands' => [
+                App\Telegram\WeatherCommand::class,
+            ],
+        ],
+
+//        'second' => [
+//            'username'  => 'MySecondBot',
+//            'token' => '123456:abc',
+//        ],
+    ],
+
     'commands' => [
         Telegram\Bot\Commands\HelpCommand::class,
-        App\Telegram\WeatherCommand::class,
+
     ],
 ]]);
 
-/**
- * Fix Update
- * Convert a value to studly caps case.
- *
- * @param  string  $value
- * @return string
- */
-function studly_case($value)
-{
-    $key = $value;
-
-    $value = ucwords(str_replace(['-', '_'], ' ', $value));
-
-    return str_replace(' ', '', $value);
-}
 
 /*
 |--------------------------------------------------------------------------
@@ -119,7 +119,7 @@ function studly_case($value)
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+    require __DIR__ . '/../routes/web.php';
 });
 
 return $app;
