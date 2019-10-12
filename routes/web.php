@@ -22,12 +22,9 @@ $router->get('/weather/setwebhook', 'BotController@setWebHook');
     \Telegram\Bot\Laravel\Facades\Telegram::commandsHelper(true);
 });*/
 
-$router->post(\Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
-    \Telegram\Bot\Laravel\Facades\Telegram::commandsHandler(true);
+$router->post(Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
+    Telegram\Bot\Laravel\Facades\Telegram::commandsHandler(true);
 });
 
-$router->get(\Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
-    \Telegram\Bot\Laravel\Facades\Telegram::commandsHandler(true);
-});
 
 $router->get('/weather/getme', 'BotController@getMe');

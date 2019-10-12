@@ -89,6 +89,22 @@ config(['telegram' => [
     ],
 ]]);
 
+/**
+ * Fix Update
+ * Convert a value to studly caps case.
+ *
+ * @param  string  $value
+ * @return string
+ */
+function studly_case($value)
+{
+    $key = $value;
+
+    $value = ucwords(str_replace(['-', '_'], ' ', $value));
+
+    return str_replace(' ', '', $value);
+}
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
