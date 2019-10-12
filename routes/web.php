@@ -11,14 +11,19 @@
 |
 */
 
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
 $router->get('/weather/setwebhook', 'BotController@setWebHook');
 
-$router->post(\Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
+/*$router->post(\Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
     \Telegram\Bot\Laravel\Facades\Telegram::commandsHelper(true);
+});*/
+
+$router->post(\Telegram\Bot\Laravel\Facades\Telegram::getAccessToken(), function () {
+    \Telegram\Bot\Laravel\Facades\Telegram::commandsHandler(true);
 });
 
 $router->get('/weather/getme', 'BotController@getMe');

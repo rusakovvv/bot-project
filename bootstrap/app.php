@@ -89,12 +89,6 @@ config(['telegram' => [
     ],
 ]]);
 
-Telegram\Bot\Laravel\Facades\Telegram::addCommands([
-    Telegram\Bot\Commands\HelpCommand::class,
-    App\Telegram\WeatherCommand::class
-]);
-
-
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

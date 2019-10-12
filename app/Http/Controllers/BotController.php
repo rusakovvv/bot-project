@@ -16,6 +16,8 @@ class BotController extends Controller
             ['1', '2', '3'],
             ['0']
         ];
+
+
         $response = Telegram::getMe();
         $botId = $response->getId();
 
@@ -38,7 +40,7 @@ class BotController extends Controller
     public function setWebHook(Request $request)
     {
         // Don't forget to setup a POST route in your Laravel Project.
-        return Telegram::setWebhook(['url' => sprintf('%s/%s/webhook', env('WEATHER_BOT_URI'), env('WEATHER_BOT_TOKEN'))]);
+        return Telegram::setWebhook(['url' => sprintf('%s/%s', env('WEATHER_BOT_URI'), env('WEATHER_BOT_TOKEN'))]);
     }
 
     public function getWebHook(Request $request)
